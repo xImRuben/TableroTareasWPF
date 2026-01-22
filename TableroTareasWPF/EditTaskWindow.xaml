@@ -1,0 +1,70 @@
+﻿<Window x:Class="TableroTareasWPF.EditTaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Editar Tarea" Width="450" SizeToContent="Height"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None"
+        Background="Transparent" AllowsTransparency="True">
+
+    <Border CornerRadius="12" Background="White" Margin="20">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="25" ShadowDepth="5" Opacity="0.3" Color="#202020"/>
+        </Border.Effect>
+        <Border.BorderBrush>
+            <SolidColorBrush Color="#E0E0E0"/>
+        </Border.BorderBrush>
+        <Border.BorderThickness>1</Border.BorderThickness>
+
+        <Grid Margin="25">
+            <StackPanel>
+                <TextBlock Text="Detalles de la Tarea" FontWeight="Bold" FontSize="20" Margin="0,0,0,20" Foreground="#172B4D"/>
+
+                <TextBlock Text="TÍTULO" FontWeight="Bold" FontSize="11" Foreground="#5E6C84" Margin="0,0,0,5"/>
+                <TextBox x:Name="txtTitulo" Height="35" Padding="5" VerticalContentAlignment="Center" BorderBrush="#DFE1E6" BorderThickness="2">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+                <TextBlock Text="DESCRIPCIÓN" FontWeight="Bold" FontSize="11" Foreground="#5E6C84" Margin="0,15,0,5"/>
+                <TextBox x:Name="txtDescripcion" Height="80" Padding="5" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" BorderBrush="#DFE1E6" BorderThickness="2">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+                <TextBlock Text="PRIORIDAD" FontWeight="Bold" FontSize="11" Foreground="#5E6C84" Margin="0,15,0,5"/>
+                <ComboBox x:Name="cmbPrioridad" Height="35" VerticalContentAlignment="Center" BorderBrush="#DFE1E6" BorderThickness="2" Margin="0,0,0,25">
+                    <ComboBoxItem Content="Alta" Foreground="#FF5252" FontWeight="SemiBold"/>
+                    <ComboBoxItem Content="Media" Foreground="#FFAB00" FontWeight="SemiBold" IsSelected="True"/>
+                    <ComboBoxItem Content="Baja" Foreground="#00C853" FontWeight="SemiBold"/>
+                </ComboBox>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="Cancelar" Width="100" Height="40" Background="#EBECF0" Foreground="#172B4D" BorderThickness="0" Click="BtnCancelar_Click" Margin="0,0,10,0" Cursor="Hand" FontWeight="SemiBold">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button Content="Guardar" Width="100" Height="40" Background="#0052CC" Foreground="White" BorderThickness="0" Click="BtnGuardar_Click" Cursor="Hand" FontWeight="Bold">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

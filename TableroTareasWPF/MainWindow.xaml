@@ -1,0 +1,110 @@
+﻿<Window x:Class="TableroTareasWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:TableroTareasWPF"
+        Title="Gestor de Tareas Pro" Height="750" Width="1250"
+        WindowStartupLocation="CenterScreen"
+        Background="#F4F5F7">
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,40,0">
+                <TextBlock Text="Mi Tablero" Foreground="#172B4D" FontSize="32" FontWeight="ExtraBold"/>
+                <TextBlock Text="Gestiona tu flujo de trabajo." Foreground="#6B778C" FontSize="16" Margin="0,5,0,0"/>
+            </StackPanel>
+
+            <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" CornerRadius="10" Padding="20,10" MinWidth="350">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="2" Opacity="0.05"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel LastChildFill="False" Margin="0,0,0,8">
+                        <TextBlock Text="Progreso del Proyecto" FontWeight="Bold" Foreground="#42526E" FontSize="12"/>
+                        <TextBlock x:Name="txtProgresoTexto" Text="0/0 Tareas" DockPanel.Dock="Right" FontWeight="SemiBold" Foreground="#0052CC" FontSize="12"/>
+                    </DockPanel>
+
+                    <Border Grid.Row="1" Height="8" CornerRadius="4" Background="#EBECF0">
+                        <Grid>
+                            <Border x:Name="barraProgresoRelleno" HorizontalAlignment="Left" Width="0" CornerRadius="4" Background="#00C853"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+
+                <Border Background="White" CornerRadius="8" Margin="0,0,15,0" Padding="10,0" Width="220" Height="45">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="2" Opacity="0.05"/>
+                    </Border.Effect>
+                    <Grid>
+                        <TextBlock Text="🔍 Buscar tarea..." Foreground="#A5ADBA" VerticalAlignment="Center" Margin="5,0,0,0" IsHitTestVisible="False">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, ElementName=txtBuscar}" Value="">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <TextBox x:Name="txtBuscar" Background="Transparent" BorderThickness="0" VerticalContentAlignment="Center" FontSize="14" Foreground="#172B4D" TextChanged="TxtBuscar_TextChanged"/>
+                    </Grid>
+                </Border>
+
+                <Button Content="📊 Informe" Padding="15,0" Height="45" Background="#6554C0" Foreground="White" FontWeight="Bold" FontSize="14" BorderThickness="0" Cursor="Hand" Margin="0,0,10,0" Click="BtnInforme_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button Content="+ Columna" Padding="15,0" Height="45" Background="#2684FF" Foreground="White" FontWeight="Bold" FontSize="14" BorderThickness="0" Cursor="Hand" Margin="0,0,10,0" Click="BtnNuevaColumna_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button Content="+ Tarea" Padding="20,0" Height="45" Background="#0052CC" Foreground="White" FontWeight="Bold" FontSize="14" BorderThickness="0" Cursor="Hand" Click="BtnNuevaTarea_Click">
+                    <Button.Effect>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.3" Color="#0052CC"/>
+                    </Button.Effect>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <local:TaskBoard x:Name="tableroPrincipal" Grid.Row="1"/>
+    </Grid>
+</Window>
